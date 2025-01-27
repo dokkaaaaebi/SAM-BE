@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Epic: The Musical </title>
+    <link rel="icon" href="asset/images/epic.jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        @font-face {
+            font-family: 'OlympicHeadline-Regular';
+            src: url('asset/fonts/OlympicHeadline-Regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'OlympicSans';
+            src: url('asset/fonts/OlympicSans.ttf') format('truetype');
+        }
+
+        body,
+        html {
+            height: 100%;
+        }
+
+        .h {
+            text-align: center;
+            margin: 20px 0;
+            font-family: 'OlympicHeadline-Regular';
+            color: rgba(0, 120, 208);
+        }
+
+        /* NAVBAR */
+        #nav-bar {
+            font-family: 'OlympicHeadline-Regular';
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar {
+            padding-left: 10%;
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+            color: rgba(0, 120, 208);
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .navbar-nav li {
+            padding: 0 10px;
+        }
+
+        .navbar-nav li a {
+            color: rgba(0, 120, 208);
+            font-weight: 100;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* HERO */
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("asset/images/hero.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            height: 70vh;
+        }
+
+        .hero-text {
+            font-family: 'OlympicSans';
+            text-align: center;
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+
+        .hero-text h1 {
+            font-size: 80px;
+            font-family: 'OlympicHeadline-Regular';
+        }
+
+        @media (max-width: 1200px) {
+            .hero-text h1 {
+                font-size: 60px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-text h1 {
+                font-size: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text {
+                top: 60%;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text {
+                top: 50%;
+            }
+
+            .hero-text h1 {
+                font-size: 30px;
+            }
+        }
+
+        /* ABOUT */
+        #about {
+            color: rgba(0, 120, 208);
+            padding-top: 10px;
+        }
+
+        .desc {
+            font-size: 20pt;
+            line-height: 16pt;
+            text-align: center;
+            font-family: 'OlympicHeadline-Regular';
+        }
+
+        .name {
+            font-family: 'OlympicSans';
+            font-size: 15pt;
+            line-height: 20pt;
+            text-align: left;
+        }
+
+        .img-fluid {
+            width: 100%;
+            height: auto;
+            display: block;
+            padding: 30px;
+        }
+
+        .spotify-button {
+            font-family: 'OlympicHeadline-Regular';
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(0, 120, 208);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .spotify-button:hover {
+            background-color: rgba(0, 120, 208, 0.30);
+        }
+
+        /* CHARACTERS */
+        .scroll-container {
+            background-color: rgba(0, 180, 235, 0.25);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px;
+            position: relative;
+        }
+
+        .scroll-content {
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 200px;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container:hover .overlay {
+            opacity: 1;
+        }
+
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        /* SAGA */
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+            flex: 1 1 calc(25% - 20px);
+            max-width: calc(25% - 20px);
+            box-sizing: border-box;
+        }
+
+        .card-text {
+            text-align: center;
+            font-family: 'OlympicSans';
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                flex: 1 1 calc(50% - 20px);
+                max-width: calc(50% - 20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <section id="nav-bar">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">EPIC: THE MUSICAL</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#character">Character</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#saga">Saga</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- HERO -->
+    <section>
+        <div class="hero-image" id="home">
+            <div class="hero-text">
+                <h1>EPIC: THE MUSICAL</h1>
+                <p>An adaptation of Homer's <i>The Odyssey!</i></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="h">
+            <h1>About Epic: The Musical</h1>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 d-flex justify-content-center">
+                    <img src="asset/images/jorge.jpg" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <p class="name mt-5">Epic: The Musical is a musical adaptation of Homer's <i>The Odyssey</i> created
+                        by <span class="desc">Jorge Rivera-Herrans</span>.</p>
+                    <p class="name">The creation of the musical was documented through Jorge's TikTok, and the song
+                        clips and process videos have gone viral on social media.</p>
+                    <p class="name">Jorge Rivera-Herrans started working on the musical around June of 2019 for his
+                        senior thesis for college. He wanted to create a musical inspired by video games and anime to
+                        "emulate their addictive sense of progression".</p>
+                    <p class="name">EPIC was originally going to be an adaptation of both The Iliad and The Odyssey,
+                        which ended up being a huge undertaking that did not work out. Jorge eventually decided to focus
+                        on the Odyssey because it has a wider cast and a variety of locations, although he has stated
+                        that he may create a musical based on The Iliad after EPIC has concluded.</p>
+                    <div class="d-flex justify-content-center mt-4">
+                        <a href="https://open.spotify.com/playlist/3HvgaZeBWbr7UjFeicPFRI?si=3408409f276f45ee"
+                            class="spotify-button" target="_blank">Listen to Epic Now!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="character">
+        <div class="h">
+            <h1>The Characters</h1>
+        </div>
+        <div class="container">
+            <div class="scroll-container">
+                <div class="scroll-content" id="scrollContent">
+                    <div class="image-container">
+                        <img src="asset/images/odysseus.jpg" alt="Odysseus" class="image">
+                        <div class="overlay">
+                            <div class="text">Odysseus</div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="asset/images/penelope.jpg" alt="Penelope" class="image">
+                        <div class="overlay">
+                            <div class="text">Penelope</div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="asset/images/telemachus.jpg" alt="Telemachus" class="image">
+                        <div class="overlay">
+                            <div class="text">Telemachus</div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="asset/images/athena.jpg" alt="Athena" class="image">
+                        <div class="overlay">
+                            <div class="text">Athena</div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="asset/images/poseidon.jpg" alt="Poseidon" class="image">
+                        <div class="overlay">
+                            <div class="text">Poseidon</div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="asset/images/eurylochus.jpg" alt="Eurylochus" class="image">
+                        <div class="overlay">
+                            <div class="text">Eurylochus</div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="asset/images/calypso.jpg" alt="Calypso" class="image">
+                        <div class="overlay">
+                            <div class="text">Calypso</div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="asset/images/antinous.jpg" alt="Antinous" class="image">
+                        <div class="overlay">
+                            <div class="text">Antinous</div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="asset/images/circe.jpg" alt="Circe" class="image">
+                        <div class="overlay">
+                            <div class="text">Circe</div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="asset/images/polites.jpg" alt="Polites" class="image">
+                        <div class="overlay">
+                            <div class="text">Polites</div>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="asset/images/tiresias.jpg" alt="Tiresias" class="image">
+                        <div class="overlay">
+                            <div class="text">Tiresias</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="scroll-button right" onclick="scrollRight()">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAGA -->
+    <section id="saga">
+        <div class="h">
+            <h1 class="mt-5">The Sagas</h1>
+        </div>
+        <div class="card-container">
+            <div class="card-container">
+                <div class="card" style="width: 18rem;">
+                    <img src="asset/images/troy.jpg" class="card-img-top" alt="The Troy Saga">
+                    <div class="card-body">
+                        <p class="card-text"> The Troy Saga </p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="asset/images/cyclops.jpg" class="card-img-top" alt="The Cyclops Saga">
+                    <div class="card-body">
+                        <p class="card-text"> The Cyclops Saga</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="asset/images/ocean.jpg" class="card-img-top" alt="The Ocean Saga">
+                    <div class="card-body">
+                        <p class="card-text">The Ocean Saga</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="asset/images/circesaga.jpg" class="card-img-top" alt="The Circe Saga">
+                    <div class="card-body">
+                        <p class="card-text">The Circe Saga</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="asset/images/underworld.jpg" class="card-img-top" alt="The Underworld Saga">
+                    <div class="card-body">
+                        <p class="card-text"> The Underworld Saga</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="asset/images/thunder.jpg" class="card-img-top" alt="The Thunder Saga">
+                    <div class="card-body">
+                        <p class="card-text"> The Thunder Saga</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="asset/images/wisdom.jpg" class="card-img-top" alt="The Wisdom Saga">
+                    <div class="card-body">
+                        <p class="card-text"> The Wisdom Saga</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="asset/images/vengeance.jpg" class="card-img-top" alt="The Vengeance Saga">
+                    <div class="card-body">
+                        <p class="card-text">The Vengeance Saga</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="asset/images/ithaca.jpg" class="card-img-top" alt="The Ithaca Saga">
+                    <div class="card-body">
+                        <p class="card-text"> The Ithaca Saga</p>
+                    </div>
+                </div>
+    </section>
+
+    <script>
+        let scrollAmount = 0;
+        const scrollContent = document.getElementById('scrollContent');
+        const imageWidth = 220;
+
+        function scrollRight() {
+            scrollAmount -= imageWidth;
+            const totalImages = document.querySelectorAll('.image-container').length;
+            if (scrollAmount < -((totalImages - 1) * imageWidth)) {
+                scrollAmount = 0;
+            }
+            scrollContent.style.transform = `translateX(${scrollAmount}px)`;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
